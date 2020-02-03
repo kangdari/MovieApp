@@ -14,18 +14,18 @@ const MoviePoster = ({ poster, alt }) => {
 
 const Movie = ({ id, title, poster, genres, summary }) => {
     return (
-        <Link
-            to={{
-                pathname: `/movie/${id}`,
-                state: {
-                    title,
-                    poster,
-                    genres,
-                    summary,
-                },
-            }}
-        >
-            <div className="Movie">
+        <div className="Movie">
+            <Link
+                to={{
+                    pathname: `/movie/${id}`,
+                    state: {
+                        title,
+                        poster,
+                        genres,
+                        summary,
+                    },
+                }}
+            >
                 <MoviePoster poster={poster} alt={title} />
                 <div className="MovieContents">
                     <h2>{title}</h2>
@@ -41,8 +41,8 @@ const Movie = ({ id, title, poster, genres, summary }) => {
                     </p>
                     {/* <p>{summary.length > 20 ? summary.slice(0, 20) : summary}</p> */}
                 </div>
-            </div>
-        </Link>
+            </Link>
+        </div>
     );
 };
 
