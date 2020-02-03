@@ -2,6 +2,7 @@ import React from 'react';
 //import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import './Movie.css';
+import { Link } from 'react-router-dom';
 
 const MovieGenre = ({ genre }) => {
     return <span>{genre}</span>;
@@ -13,19 +14,35 @@ const MoviePoster = ({ poster, alt }) => {
 
 const Movie = ({ title, poster, genres, summary }) => {
     return (
-        <div className="Movie">
-            <MoviePoster poster={poster} alt={title} />
-            <div className="MovieContents">
-                <h2>{title}</h2>
-                <div className="MovieGenres">
-                    {genres.map((genre, index) => (
-                        <MovieGenre genre={genre} key={index} />
-                    ))}
+        <Link
+            to={{
+                pathname: '/movie-detail',
+                state: {
+                    title,
+                    poster,
+                    genres,
+                    summary,
+                },
+            }}
+        >
+            <div className="Movie">
+                <MoviePoster poster={poster} alt={title} />
+                <div className="MovieContents">
+                    <h2>{title}</h2>
+                    <div className="MovieGenres">
+                        {genres.map((genre, index) => (
+                            <MovieGenre genre={genre} key={index} />
+                        ))}
+                    </div>
+                    <p className="summary">
+                        {summary.length > 250
+                            ? `${summary.slice(0, 250)}...`
+                            : summary}
+                    </p>
+                    {/* <p>{summary.length > 20 ? summary.slice(0, 20) : summary}</p> */}
                 </div>
-                <p className="summary" >{summary.length > 250 ? `${summary.slice(0, 250)}...` : summary}</p>
-                {/* <p>{summary.length > 20 ? summary.slice(0, 20) : summary}</p> */}
             </div>
-        </div>
+        </Link>
     );
 };
 
