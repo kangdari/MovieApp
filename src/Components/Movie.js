@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const MoviePoster = ({poster}) =>{
+const MoviePoster = ({ poster }) =>{
     return(
-        <img src={poster} />
+        <img src={poster} alt="img" />
     )
 }
 
-const Movie = ({title, poster}) => {
+const Movie = ({ title, poster }) => {
     return (
         <div>
             <MoviePoster poster={poster}/>
