@@ -1,11 +1,18 @@
 import React from 'react';
 
-
-const Detail = (props) => {
-    console.log(props)
+const Detail = ({ location, history }) => {
+    if (location.state === undefined){
+        history.push('/'); // redirect
+        return null ; 
+    }
+    const { title, poster, genres, summary } = location.state;
+    
     return (
         <div>
-            hello
+            {title}
+            {poster}
+            {genres}
+            {summary}
         </div>
     );
 };

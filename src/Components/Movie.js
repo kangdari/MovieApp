@@ -12,11 +12,11 @@ const MoviePoster = ({ poster, alt }) => {
     return <img src={poster} alt={alt} title={alt} />;
 };
 
-const Movie = ({ title, poster, genres, summary }) => {
+const Movie = ({ id, title, poster, genres, summary }) => {
     return (
         <Link
             to={{
-                pathname: '/movie-detail',
+                pathname: `/movie/${id}`,
                 state: {
                     title,
                     poster,

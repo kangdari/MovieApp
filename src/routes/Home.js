@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+// import { useCallback } from 'react';
 import './Home.css';
 import Movie from '../Components/Movie';
 import axios from 'axios';
@@ -18,17 +19,17 @@ function Home() {
     // 2. Promise를 이용한 API 호출
     // useCallback으로 감싸주지 않으면 렌더링할 때마다 getMovies 함수가 생성됨.
     // [] 렌더링될 때 한번만 실행
-    const getMovies = useCallback(async () => {
-        const movies = await APIcall();
-        setMovies(movies);
-    }, []);
+    // const getMovies = useCallback(async () => {
+    //     const movies = await APIcall();
+    //     setMovies(movies);
+    // }, []);
 
-    const APIcall = () => {
-        return fetch(url)
-            .then(response => response.json())
-            .then(response => response.data.movies)
-            .catch(err => console.log(err));
-    };
+    // const APIcall = () => {
+    //     return fetch(url)
+    //         .then(response => response.json())
+    //         .then(response => response.data.movies)
+    //         .catch(err => console.log(err));
+    // };
 
     useEffect(() => {
         callApi(); // 1
@@ -41,6 +42,7 @@ function Home() {
             return (
                 <Movie
                     key={movie.id}
+                    id={movie.id}
                     title={movie.title}
                     poster={movie.medium_cover_image}
                     genres={movie.genres}
