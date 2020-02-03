@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import './App.css';
 import Movie from './Components/Movie';
 import axios from 'axios';
 
 function App() {
     const [movies, setMovies] = useState(null);
-    const url = 'https://yts.mx/api/v2/list_movies.json';
+    const url = 'https://yts.mx/api/v2/list_movies.json?sort_by=like_count';
 
     // 1. axios를 이용한 API 호출
     const callApi = async () => {
@@ -33,6 +34,7 @@ function App() {
         // getMovies(); // 2
     }, []);
 
+    // titile, genres, rating, summary, medium_cover_image
     const renderMovies = movies => {
         const moviesList = movies.map(movie => {
             return (
@@ -40,13 +42,20 @@ function App() {
                     key={movie.id}
                     title={movie.title}
                     poster={movie.medium_cover_image}
+                    genres={movie.genres}
+                    summary={movie.summary}
                 />
             );
         });
         return moviesList;
     };
-
-    return <div>{!movies ? 'loading' : renderMovies(movies)}</div>;
+    return (
+        <div className="container">
+            <div className={!movies ? 'Loading' : 'MovieBlock'}>
+                {!movies ? 'Loading' : renderMovies(movies)}
+            </div>
+        </div>
+    );
 }
 
 export default App;
